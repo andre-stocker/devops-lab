@@ -1,4 +1,4 @@
- name: Build and Deploy to AKS
+name: Build and Deploy to AKS
 
 on:
   push:
@@ -19,7 +19,7 @@ jobs:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: Login to ACR
-        run: az acr login --name acrdevopslabs123.azurecr.io
+        run: az acr login --name acrdevopslabs123
 
       - name: Build and Push Image
         run: |
@@ -33,5 +33,6 @@ jobs:
           resource-group: rg-devops-lab
           cluster-name: aks-devops-lab
 
-      - name: Deploy to Kubernetes
-        run: kubectl apply -f k8s/
+      - name: Deploy to AKS
+        run: |
+          kubectl apply -f k8s/
